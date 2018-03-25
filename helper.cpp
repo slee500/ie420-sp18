@@ -1,4 +1,4 @@
-#include "project.h"
+#include "main.h"
 #include "helper.h"
 
 const double max(const double &a, const double &b) {

@@ -2,8 +2,9 @@
 #include <vector>
 #include <cmath> 
 
-#include "project.h"
+#include "main.h"
 #include "helper.h"
+#include "CRR_binomial.h"
 
 using namespace std;
 
@@ -13,10 +14,7 @@ double CRR_binomial(params_t &p) {
     delta = p.t/double(p.n); // Ensure correct typecasting
     u = exp(p.sigma * sqrt(delta));
     d = exp(-p.sigma * sqrt(delta));
-    // u = 2;
-    // d = 0.5;
     p_star = (exp((p.r - p.q) * delta) - d) / (u - d);
-    cout << "P-star: " << p_star << endl;
 
     /* Calculate payoffs at maturity */
     vector<double> payoffs;

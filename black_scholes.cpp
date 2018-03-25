@@ -1,8 +1,10 @@
 #include <iostream>
 #include <cmath>
 
-#include "project.h"
+#include "main.h"
 #include "helper.h"
+#include "black_scholes.h"
+
 using namespace std;
 
 double normal(double x) {

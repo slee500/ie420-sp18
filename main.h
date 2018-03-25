@@ -1,5 +1,5 @@
-#ifndef _PROJECT_H
-#define _PROJECT_H
+#ifndef _MAIN_H
+#define _MAIN_H
 
 enum ex_t {AMERICAN, EUROPEAN};
 enum op_t {CALL, PUT};
@@ -16,4 +16,4 @@ struct params_t {
     ex_t exercise;  // AMERICAN or EUROPEAN
 };
 
-#endif /* _PROJECT_H */
+#endif /* _MAIN_H */

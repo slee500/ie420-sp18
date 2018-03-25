@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include "project.h"
-#include "CRR_bin.h"
+#include "CRR_binomial.h"
 #include "black_scholes.h"
 
 using namespace std;
@@ -17,6 +17,7 @@ int main(int argc, char** argv) {
     params.q = 0.04; 
     params.n = 1; 
     params.exercise = EUROPEAN;
+    
     cout << "Option Price: " << black_scholes(params) << endl;
 
     return 0;

@@ -28,14 +28,13 @@ int main(int argc, char** argv) {
     params.sigma = 0.2;
     params.r = 0.05; 
     params.q = 0.04; 
-    params.n = 1; 
-    params.exercise = AMERICAN;
+    params.n = 1000; 
+    params.exercise = EUROPEAN;
 
-    // cout << "Black-Scholes Option Price: " << black_scholes(params) << endl;
-    
-    double option_price = CRR_binomial(params);
-    cout << "CRR-Binomial Option Price: " << option_price << endl;
-    cout << "Critical Stock Price: " << critical_price(params, option_price) << endl;
+    double crr_option_price = CRR_binomial(params);
+    cout << "Black-Scholes Option Price: " << black_scholes(params) << endl;
+    cout << "CRR-Binomial Option Price: " << crr_option_price << endl;
+    // cout << "Critical Stock Price: " << critical_price(params, crr_option_price) << endl;
 
     // for (int i = 1; i <= 1000; i += 1) {
     //     params.n = i;
@@ -47,7 +46,7 @@ int main(int argc, char** argv) {
 
     // End the timer
     duration = (clock() - start) / (double) CLOCKS_PER_SEC;
-    cout << "Time taken: " << duration << endl;
+    cout << "Time taken: " << duration << "s" << endl;
 
     return 0;
 }

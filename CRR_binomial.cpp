@@ -20,7 +20,8 @@ double CRR_binomial(params_t &p) {
     vector<double> payoffs;
     double st;
     for (int i = 0; i <= p.n; i++) {
-        st = pow(u, p.n-i) * pow(d, i) * p.s0;
+        // i represents to the number of "down" moves
+        st = pow(u, p.n - i) * pow(d, i) * p.s0;
         payoffs.push_back(calc_payoff(p.option, st, p.k));
     }
 
@@ -40,6 +41,8 @@ double CRR_binomial(params_t &p) {
             else if (p.exercise == AMERICAN) {
                 // Need additional calculations for American options 
                 max1 = exp(-p.r * delta) * (p_fu + p_fd); 
+
+                // Here, j represents the number of "down" moves
                 st = pow(u, j_limit-1-j) * pow(d, j) * p.s0;
                 max2 = calc_payoff(p.option, st, p.k);
                 payoffs[j] = max(max1, max2);
@@ -48,5 +51,6 @@ double CRR_binomial(params_t &p) {
         // Remove last element from "payoffs" since we no longer need it
         payoffs.pop_back(); 
     }
+    // When we have finished iterating, the "payoffs" vector will be size 1 and containing the option price f0
     return payoffs[0];
 }

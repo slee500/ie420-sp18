@@ -24,6 +24,7 @@ double black_scholes(params_t &p) {
         return -1;
     }
 
+    // Calculate d1 and d2 as per the equations in the slides 
     double d1 = log(p.s0 / p.k) + p.t * (p.r - p.q + 0.5*pow(p.sigma, 2)) / (p.sigma * sqrt(p.t));
     double d2 = d1 - p.sigma * sqrt(p.t);
 

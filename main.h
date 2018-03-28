@@ -14,6 +14,10 @@ struct params_t {
     double q;       // cont. dividend yield
     int n;          // number of time steps 
     ex_t exercise;  // AMERICAN or EUROPEAN
+    
+    bool do_CRR;    // 'false' to input values for u & d
+    double u;       // Up movement in stock price
+    double d;       // Down movement in stock price
 };
 
 #endif /* _MAIN_H */

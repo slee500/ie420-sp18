@@ -2,8 +2,9 @@
 #include <fstream>
 #include <ctime>
 
+
 #include "main.h"
-#include "CRR_binomial.h"
+#include "binomial.h"
 #include "black_scholes.h"
 #include "critical_price.h"
 
@@ -22,23 +23,32 @@ int main(int argc, char** argv) {
     // Configure parameters here
     params_t params;
     params.option = PUT; 
-    params.k = 100;
-    params.t = 1;
-    params.s0 = 100;
-    params.sigma = 0.2;
-    params.r = 0.05; 
-    params.q = 0.04; 
-    params.n = 1000; 
-    params.exercise = EUROPEAN;
+    params.k = 1.26;
+    params.t = 2;
+    params.s0 = 1.26;
+    params.sigma = 0.2; 
+    params.r = 0.02; 
+    params.q = 0.005; 
+    params.n = 2; 
+    params.exercise = AMERICAN;
+    
+    // If we don't want to use sigma to find 'u' and 'd'
+    params.do_CRR = false;
+    params.u = 1.05;
+    params.d = 0.95;
 
-    double crr_option_price = CRR_binomial(params);
-    cout << "Black-Scholes Option Price: " << black_scholes(params) << endl;
-    cout << "CRR-Binomial Option Price: " << crr_option_price << endl;
+    cout << "Put price: " << binomial(params) << endl;
+
+    // double crr_option_price = binomial(params);
+    // cout << "CRR-Binomial Option Price: " << crr_option_price << endl;
+    // double options_price = black_scholes(params);
+    // cout << "Black-Scholes Option Price: " << options_price << endl;
+    
     // cout << "Critical Stock Price: " << critical_price(params, crr_option_price) << endl;
 
     // for (int i = 1; i <= 1000; i += 1) {
     //     params.n = i;
-    //     outfile << "N = " << i << ", " << CRR_binomial(params) << endl;
+    //     outfile << "N = " << i << ", " << binomial(params) << endl;
     // }
     
     // Close the output file

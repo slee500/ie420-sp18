@@ -2,7 +2,6 @@
 #include <fstream>
 #include <ctime>
 
-
 #include "main.h"
 #include "binomial.h"
 #include "black_scholes.h"
@@ -17,42 +16,32 @@ int main(int argc, char** argv) {
     start = clock();
 
     // Create output file
-    ofstream outfile;
-    outfile.open("output.csv");
+    // ofstream outfile;
+    // outfile.open("output.csv");
 
     // Configure parameters here
     params_t params;
     params.option = PUT; 
-    params.k = 1.26;
-    params.t = 2;
-    params.s0 = 1.26;
+    params.k = 100;
+    params.t = 10.0/12.0;
+    params.s0 = 200; // TODO: Do we choose this? 
     params.sigma = 0.2; 
-    params.r = 0.02; 
-    params.q = 0.005; 
-    params.n = 2; 
+    params.r = 0.05; 
+    params.q = 0; 
+    params.n = 1000; // Variable
     params.exercise = AMERICAN;
     
     // If we don't want to use sigma to find 'u' and 'd'
-    params.do_CRR = false;
-    params.u = 1.05;
-    params.d = 0.95;
+    params.do_CRR = true;
+    // params.u = 1.05;
+    // params.d = 0.95;
 
-    cout << "Put price: " << binomial(params) << endl;
-
-    // double crr_option_price = binomial(params);
-    // cout << "CRR-Binomial Option Price: " << crr_option_price << endl;
-    // double options_price = black_scholes(params);
-    // cout << "Black-Scholes Option Price: " << options_price << endl;
-    
-    // cout << "Critical Stock Price: " << critical_price(params, crr_option_price) << endl;
-
-    // for (int i = 1; i <= 1000; i += 1) {
-    //     params.n = i;
-    //     outfile << "N = " << i << ", " << binomial(params) << endl;
-    // }
+    double bin_option_price = binomial(params);
+    cout << "CRR-Binomial Option Price: " << bin_option_price << endl;
+    cout << "Critical Stock Price: " << critical_price(params, bin_option_price) << endl;
     
     // Close the output file
-    outfile.close();
+    // outfile.close();
 
     // End the timer
     duration = (clock() - start) / (double) CLOCKS_PER_SEC;

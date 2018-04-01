@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <cfloat>
 
 #include "main.h"
 #include "helper.h"
@@ -41,7 +42,10 @@ double critical_price(params_t &p, double option_price) {
 
     // We want to compare the option price with the option intrinsic value
     double stk_px, intrinsic_value, s_star, abs_diff;
-    s_star = 0;
+
+    if (p.option == CALL) s_star = DBL_MAX;
+    else if (p.option == PUT) s_star = 0;
+
     // We are supposed to vary the number of time steps 'n' 
     for (int i=0; i<=p.n; i++) {
         for (int j=0; j<=i; j++) {

@@ -36,7 +36,7 @@ int main(int argc, char** argv) {
     // params.d = 0.95;
 
     double option_price;
-    for (double s0 = 200; s0 >= 100; s0 -= 2) {
+    for (double s0 = 149; s0 >= 148; s0 -= 0.01) {
         params.s0 = s0;
         option_price = binomial(params);
         cout << "S0 = " << params.s0;

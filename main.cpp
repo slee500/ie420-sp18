@@ -21,24 +21,28 @@ int main(int argc, char** argv) {
 
     // Configure parameters here
     params_t params;
-    params.option = PUT; 
+    params.option = CALL; 
     params.k = 100;
     params.t = 10.0/12.0;
-    params.s0 = 200; // TODO: Do we choose this? 
     params.sigma = 0.2; 
     params.r = 0.05; 
-    params.q = 0; 
+    params.q = 0.04; 
     params.n = 1000; // Variable
     params.exercise = AMERICAN;
     
-    // If we don't want to use sigma to find 'u' and 'd'
+    // Set do_CRR to 'true' if we want to use sigma to find 'u' and 'd'
     params.do_CRR = true;
     // params.u = 1.05;
     // params.d = 0.95;
 
-    double bin_option_price = binomial(params);
-    cout << "CRR-Binomial Option Price: " << bin_option_price << endl;
-    cout << "Critical Stock Price: " << critical_price(params, bin_option_price) << endl;
+    double option_price;
+    for (double s0 = 200; s0 >= 100; s0 -= 2) {
+        params.s0 = s0;
+        option_price = binomial(params);
+        cout << "S0 = " << params.s0;
+        cout << ", Option Price = " << option_price; 
+        cout << ", Critical Price = " << critical_price(params, option_price) << endl;
+    }
     
     // Close the output file
     // outfile.close();

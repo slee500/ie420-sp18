@@ -27,7 +27,6 @@ double black_scholes(params_t &p) {
     // Calculate d1 and d2 as per the equations in the slides 
     double d1 = log(p.s0 / p.k) + p.t * (p.r - p.q + 0.5*pow(p.sigma, 2)) / (p.sigma * sqrt(p.t));
     double d2 = d1 - p.sigma * sqrt(p.t);
-    cout << "d1: " << d1 << ", d2: " << d2 << endl;
 
     if (p.option == CALL) {
         // c = s0 * exp(-qT) * N(d1) - k * exp(-rT) * N(d2)

@@ -47,8 +47,8 @@ double critical_price(params_t &p, double option_price) {
     else if (p.option == PUT) s_star = 0;
 
     // We are supposed to vary the number of time steps 'n' 
-    for (int i=0; i<=p.n; i++) {
-        for (int j=0; j<=i; j++) {
+    for (double i=0; i<=p.n; i++) {
+        for (double j=0; j<=i; j++) {
             stk_px = pow(u, i-j) * pow(d, j) * p.s0;
             intrinsic_value = calc_payoff(p.option, stk_px, p.k);
             abs_diff = abs(option_price - intrinsic_value);

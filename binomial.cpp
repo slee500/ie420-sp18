@@ -1,14 +1,21 @@
 #include <iostream>
 #include <vector>
 #include <cmath> 
+#include <ctime>
+
+using namespace std;
 
 #include "main.h"
 #include "helper.h"
 #include "binomial.h"
 
-using namespace std;
+bin_ret_t binomial(params_t &p) {
+    bin_ret_t output;
 
-double binomial(params_t &p) {
+    // Start the timer
+    clock_t start;
+    start = clock();
+
     /* Calcualte u, d, p_star */
     double delta, u, d, p_star;
     delta = p.t/(double) p.n; // Ensure correct typecasting
@@ -56,6 +63,10 @@ double binomial(params_t &p) {
         // Remove last element from "payoffs" since we no longer need it
         payoffs.pop_back(); 
     }
+    // End the timer
+    output.duration = (clock() - start) / (double) CLOCKS_PER_SEC;
     // When we have finished iterating, the "payoffs" vector will be size 1 and containing the option price f0
-    return payoffs[0];
+    output.option_price = payoffs[0];
+    
+    return output;
 }

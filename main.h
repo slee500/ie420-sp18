@@ -4,6 +4,11 @@
 enum ex_t {AMERICAN, EUROPEAN};
 enum op_t {CALL, PUT};
 
+struct bin_ret_t {
+    double option_price;
+    double duration;
+};
+
 struct params_t {
     op_t option;    // CALL or PUT
     double k;       // Strike price
@@ -19,5 +24,8 @@ struct params_t {
     double u;       // Up movement in stock price
     double d;       // Down movement in stock price
 };
+
+void run_Q2();
+void run_Q3();
 
 #endif /* _MAIN_H */

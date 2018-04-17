@@ -146,7 +146,7 @@ double q3_find_crit(params_t &params, double lb, double hb) {
         } 
     }
 
-    for (double s0 = lower_bound; s0 <= higher_bound; s0 += 0.01) {
+    for (double s0 = lower_bound; s0 <= higher_bound+0.01; s0 += 0.01) {
         params.s0 = s0;
         bin_result = binomial(params);
         prev_crit_px = curr_crit_px;
@@ -212,7 +212,7 @@ double q4_find_crit(params_t &params, double lb, double hb) {
         } 
     }
 
-    for (double s0 = higher_bound; s0 >= lower_bound; s0 -= 0.01) {
+    for (double s0 = higher_bound; s0 >= lower_bound-0.01; s0 -= 0.01) {
         params.s0 = s0;
         bin_result = binomial(params);
         prev_crit_px = curr_crit_px;

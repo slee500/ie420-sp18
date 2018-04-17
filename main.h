@@ -27,8 +27,10 @@ struct params_t {
 
 void run_Q2();
 void run_Q3();
+void run_Q4();
 
-void q3_find_put_price(params_t &params);
+void find_option_price(params_t &params);
 double q3_find_crit(params_t &params, double lb, double hb);
+double q4_find_crit(params_t &params, double lb, double hb);
 
 #endif /* _MAIN_H */

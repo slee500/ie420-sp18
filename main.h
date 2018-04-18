@@ -25,6 +25,7 @@ struct params_t {
     double d;       // Down movement in stock price
 };
 
+void run_Q1();
 void run_Q2();
 void run_Q3();
 void run_Q4();

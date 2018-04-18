@@ -14,7 +14,8 @@ int main(int argc, char** argv) {
     if (argc < 2) {
         cout << "Enter 2, 3 or 4 to pick which question to run." << endl;
     } else {
-        if (argv[1][0] == '2') run_Q2();
+        if (argv[1][0] == '1') run_Q1();
+        else if (argv[1][0] == '2') run_Q2();
         else if (argv[1][0] == '3') run_Q3();
         else if (argv[1][0] == '4') run_Q4();
         else {
@@ -23,6 +24,34 @@ int main(int argc, char** argv) {
     }
 
     return 0;
+}
+
+void run_Q1() {
+    // Configure parameters here
+    params_t params;
+    params.option = CALL; 
+    params.k = 100;
+    params.t = 1.0;
+    params.s0 = 100;
+    params.sigma = 0.2; 
+    params.r = 0.05; 
+    params.q = 0.04; 
+    params.exercise = EUROPEAN;
+    params.do_CRR = true;
+
+    bin_ret_t bin_result;
+    
+    params.n = 1000; 
+    bin_result = binomial(params);
+    cout << "N = " << params.n <<  ", Compute Time = " << bin_result.duration << "s" << endl;
+    
+    params.n = 5000; 
+    bin_result = binomial(params);
+    cout << "N = " << params.n <<  ", Compute Time = " << bin_result.duration << "s" << endl;
+    
+    params.n = 10000; 
+    bin_result = binomial(params);
+    cout << "N = " << params.n <<  ", Compute Time = " << bin_result.duration << "s" << endl;
 }
 
 /****** QUESTION 2 *****/
